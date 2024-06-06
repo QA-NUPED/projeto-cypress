@@ -11,7 +11,7 @@ Foi desenvolvido testes automatizados do site AdoPet, usando o framework Cypress
 <br>
 
 <p align="center">
-  <img alt="Foto da home do site" src="./img/AdoPetHome.png" width="100%">
+  <img alt="Foto da home do site" src="./imgperfil/AdoPetHome.png" width="100%">
 </p>
 
 
