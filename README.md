@@ -43,8 +43,12 @@ Este comando instala a biblioteca Faker.js como uma dependência de desenvolvime
 Este comando instala o pacote cypress-mochawesome-reporter como uma dependência de desenvolvimento para o seu projeto Node.js. Esse pacote é um plugin que permite gerar relatórios de teste no formato Mochawesome ao usar o framework de teste Cypress. Esses relatórios fornecem uma visualização mais detalhada e legível dos resultados dos testes executados com o Cypress.
  <br><br>
 
+ 📍 Comandos para rodar os testes: <br>
+ 🔹 Terminal: npx cypress run <br>
+ 🔹 Interface Cypress: npx cypress open
+<br><br>
 
  
 
 ---
-Projeto desenvolvido por Thais Mabelli 👩💻
+Projeto desenvolvido por **Thais Mabelli** 👩💻
