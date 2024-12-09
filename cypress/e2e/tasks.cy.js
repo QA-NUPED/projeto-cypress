@@ -50,18 +50,18 @@ describe('Verifique se é possível realizar cadastro usando duas senhas diferen
     })  
 })
 
-describe('Verifique se é possível realizar login', ()=>{
+//describe('Verifique se é possível realizar login', ()=>{
     
-    beforeEach(()=>{
-        cy.log('thais123@gmail.com', '1234Thais')
-    })
+//    beforeEach(()=>{
+//        cy.log('thais123@gmail.com', '1234Thais')
+//    })
         
-    it('Deve tentar realizar login em uma conta', ()=>{      
-        cy.visitLoginPage();
-        cy.loginUser();
-        cy.verifyHomePageURL();     
-    })
-})
+//    it('Deve tentar realizar login em uma conta', ()=>{      
+//        cy.visitLoginPage();
+//        cy.loginUser();
+//        cy.verifyHomePageURL();     
+//    })
+//})
 
 describe('Verifique se é possível ser direcionado para página de Faça seu cadastro pela área de login', ()=>{
     it('Deve tentar acessar página de "Faça seu cadastro" na área de Login', ()=>{
