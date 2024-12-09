@@ -74,7 +74,7 @@ describe('Verifique se é possível ser direcionado para página de Faça seu ca
 
 describe('Verifique se é possível realizar cadastro com endereço de e-mail faltando gmail.com', ()=>{
     it('Deve tentar realizar cadastro sem endereço de e-mail', ()=>{  
-        cy.navigateToCadastroPage();
+        cy.navigateeToCadastroPage();
         cy.attemptRegistrationWithoutIncompleteEmail();
         cy.errorOnIncompleteEmailRegistration();
         cy.waitForTime();          
