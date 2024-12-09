@@ -13,7 +13,7 @@ on:
   workflow_dispatch:  # Permite rodar manualmente
   
 # Essa build está rodando em uma máquina ubuntu
-# Em node-version coloca a maquina com alguma dessas versões
+# Em node-version coloca a maquina com alguma dessas versões, como tem uma matriz ele roda 3x
 jobs:
   build:
     runs-on: ubuntu-latest
