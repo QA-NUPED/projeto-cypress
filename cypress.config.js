@@ -10,7 +10,7 @@ module.exports = defineConfig({
     // Configuração para os relatórios
     reporterOptions: {
       reportDir: 'cypress/reports/mochawesome', // Diretório para salvar os relatórios
-      overwrite: true,                        // Não sobrescrever os relatórios
+      overwrite: false,                        // Não sobrescrever os relatórios
       html: true,                              // Gerar relatórios em HTML
       json: true                               // Gerar relatórios em JSON
     }
