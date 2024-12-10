@@ -30,5 +30,14 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }} #usa setup do Node
-    - run: npm install 
+    - run: npm install
+    #criação de pasta de reporte
+    - name: Create report folder
+    - run: mkdir -p ./cypress/reports/mochawesome
     - run: npx cypress run
+
+    - name: Relatórios gerados #arquivando relatorios 
+      uses: actions/upload-artifact@v3
+      with:
+        name: mochawesome-report
+        path: ./cypress/reports/mochawesome
