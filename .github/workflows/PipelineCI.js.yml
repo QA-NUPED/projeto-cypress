@@ -24,8 +24,8 @@ jobs:
 # Aqui são os passo a passo que tem dentro do Jobs - configurações do job 
     steps:
     - uses: actions/checkout@v4 #ter acesso ao git e conseguir navegar no projeto tranquilamente e clona na maquina virtual
-    - name: Use Node.js ${{ matrix.node-version }} #instalação de node
-      uses: actions/setup-node@v4 # setup do node 
+    - name: Use Node.js ${{ matrix.node-version }} 
+      uses: actions/setup-node@v4 # setup do node (instalação) 
       with:
         node-version: ${{ matrix.node-version }} #versao que sera usada
     - run: npm install
