@@ -31,12 +31,15 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }} #usa setup do Node
     - run: npm install
-    #criação de pasta de reporte
+    
+    # Criação da pasta de relatório
     - name: Create report folder
-    - run: mkdir -p ./cypress/reports/mochawesome
-    - run: npx cypress run
+      run: mkdir -p ./cypress/reports/mochawesome
+    - name: Run Cypress tests
+      run: npx cypress run
 
-    - name: Relatórios gerados #arquivando relatorios 
+       # Arquivando os relatórios gerados
+    - name: Upload Mochawesome reports
       uses: actions/upload-artifact@v3
       with:
         name: mochawesome-report
