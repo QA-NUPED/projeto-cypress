@@ -31,4 +31,14 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }} #usa setup do Node
     - run: npm install 
-    - run: npx cypress run
+    - run: npx cypress run --reporter junit --reporter-options mochaFile=reports/test-results-[hash].xml #npx cypress run
+    - run:
+        npx mochawesome-merge reports/*.xml > merged-report.json && npx mochawesome-report-generator merged-report.json   #gera relatórios em html
+    # Cria diretório para armazenar os logs e relatórios
+    - run: mkdir -p reports && mv merged-report.json reports/ && mv mochawesome-report.html reports/
+    # ação de armazenar e disponibilizar os resultados ou arquivos gerados durante a execução do workflow
+    - name: Upload Cypress Test Reports
+      uses: actions/upload-artifact@v3
+      with:
+        name: cypress-reports
+        path: reports/
