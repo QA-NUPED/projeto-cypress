@@ -31,4 +31,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }} #usa setup do Node
     - run: npm install 
-    - run: npx cypress run
+    - run: npx cypress run --reporter mochawesome --reporter-options reportDir=cypress/reports,overwrite=true,html=true,json=true
+
+    - name: Upload Cypress Reports (HTML & JSON)
+      uses: actions/upload-artifact@v2
+      with:
+       name: cypress-reports
+       path: cypress/reports/html/.jsons/mochawesome.json && cypress/reports/html/index.html
