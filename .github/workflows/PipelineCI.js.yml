@@ -39,7 +39,7 @@ jobs:
       run: npx cypress run
 
        # Arquivando os relatórios gerados
-    - name: Upload Mochawesome reports
+    - name: Armazenando relatório Mochawesome reports
       uses: actions/upload-artifact@v3
       with:
         name: mochawesome-report
