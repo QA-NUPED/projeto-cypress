@@ -31,10 +31,4 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }} #usa setup do Node
     - run: npm install 
-    - run: npx cypress run --reporter mochawesome --reporter-options reportDir=cypress/reports,html=true,overwrite=true # está configurado apenas para gerar o relatório HTML (html=true) e overwrite=true garante que o relatório anterior será substituído se existir.
-
-    - name: Relatório Cypress Reports 
-      uses: actions/upload-artifact@v3
-      with:
-       name: cypress-reports
-       path: cypress/reports/mochawesome.html
+    - run: npx cypress run
