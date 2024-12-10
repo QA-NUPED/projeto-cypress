@@ -2,34 +2,32 @@
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
 name: Pipeline test CI
-# Essa parte são push e pull que apontam para branch main, vai rodar também quando mexer na main
+# coloca na parte on o evento que vai fazer disparar o workflow (ação no repositório que ativa)
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main" ]   #condições que entram na condição para disparar o workflow (só se for push na main)
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main" ] #condições que entram na condição para disparar o workflow (só se for PR na main)
   schedule:
     - cron: '0 12 * * *'  # Isso vai rodar todo dia às 12:00 PM UTC (9:00 AM BRT)
   workflow_dispatch:  # Permite rodar manualmente
   
-# Essa build está rodando em uma máquina ubuntu
-# Em node-version coloca a maquina com alguma dessas versões, como tem uma matriz ele roda 3x
+# No jobs antes do passo a passo se coloca a conf de maquina
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest #maquina virtual que sera executado o workflow 
     strategy:
       matrix:
         node-version: [18.x, 20.x, 22.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
         
-# Aqui temos os steps 
+# Aqui são os passo a passo que tem dentro do Jobs - configurações do job 
     steps:
-    #configurações do job 
-    - uses: actions/checkout@v4 #ter acesso ao git e conseguir navegar no projeto tranquilamente
-    - name: Use Node.js ${{ matrix.node-version }} #aqui usa versão do node js, pega lá em node-version
-      uses: actions/setup-node@v4
+    - uses: actions/checkout@v4 #ter acesso ao git e conseguir navegar no projeto tranquilamente e clona na maquina virtual
+    - name: Use Node.js ${{ matrix.node-version }} #instalação de node
+      uses: actions/setup-node@v4 # setup do node 
       with:
-        node-version: ${{ matrix.node-version }} #usa setup do Node
+        node-version: ${{ matrix.node-version }} #versao que sera usada
     - run: npm install
     
     # Criação da pasta de relatório
