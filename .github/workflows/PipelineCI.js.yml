@@ -24,20 +24,20 @@ jobs:
 # Aqui são os passo a passo que tem dentro do Jobs - configurações do job 
     steps:
     - uses: actions/checkout@v4 #ter acesso ao git e conseguir navegar no projeto tranquilamente e clona na maquina virtual
-    - name: Use Node.js ${{ matrix.node-version }} 
+    - name: Setup config do Node.js ${{ matrix.node-version }} 
       uses: actions/setup-node@v4 # setup do node (instalação) 
       with:
         node-version: ${{ matrix.node-version }} #versao que sera usada
     - run: npm install
     
     # Criação da pasta de relatório
-    - name: Create report folder
+    - name: Criação da pasta de relatórios
       run: mkdir -p ./cypress/reports/mochawesome
-    - name: Run Cypress tests
+    - name: Execução dos testes Cypress
       run: npx cypress run
 
        # Arquivando os relatórios gerados
-    - name: Armazenando relatório Mochawesome reports
+    - name: Armazenando relatório Mochawesome 
       uses: actions/upload-artifact@v3
       with:
         name: mochawesome-report
