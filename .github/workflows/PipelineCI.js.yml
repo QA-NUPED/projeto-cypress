@@ -31,49 +31,13 @@ jobs:
     - run: npm install
     
     # Criação da pasta de relatório
-    - name: Criar pasta de relatório
+    - name: Create report folder
       run: mkdir -p ./cypress/reports/mochawesome
-    - name: Execução dos testes Cypress
-      run: npx cypress run --reporter mochawesome --reporter-options reportDir=./cypress/reports/mochawesome,overwrite=true,html=true,json=true
-      ###############################
-      # mescla os relatórios Mochawesome se tiver varios arquivos no formato JSON
-    - name: Merge dos relatórios Mochawesome em formato JSON
-      run: |
-        run: |
-          if ls ./cypress/reports/mochawesome/*.json 1> /dev/null 2>&1; then
-          npx mochawesome-merge ./cypress/reports/mochawesome/*.json > ./cypress/reports/mochawesome/merged-report.json
+    - name: Run Cypress tests
+      run: npx cypress run
 
-    - name: Lista de arquivos gerados
-      run: ls ./cypress/reports/mochawesome
-
-    - name: List generated files
-      run: ls ./cypress/reports/mochawesome/*.json
-
-    - name: Debug Cypress report generation
-      run: |
-        if [ ! -f ./cypress/reports/mochawesome/*.json ]; then
-          echo "No JSON report generated!"
-          exit 1
-        fi
-        cat ./cypress/reports/mochawesome/*.json
-
-
-    # Extração e exibição dos resultados na tabela (PASS, FAIL, 
-    - name: Gerando exibição dos resultados dos testes
-      run: |
-        PASS=$(jq '.stats.passes' ./cypress/reports/mochawesome/merged-report.json)
-        FAIL=$(jq '.stats.failures' ./cypress/reports/mochawesome/merged-report.json)
-        TOTAL=$(($PASS + $FAIL))
-        echo "Results Summary"
-        echo "| Status   | Contabilização |"
-        echo "|----------|-------|"
-        echo "| Passed   | $PASS  |"
-        echo "| Failed   | $FAIL  |"
-        echo "| Total    | $TOTAL |"
-      
-    ###################################
        # Arquivando os relatórios gerados
-    - name: Armazenando relatório Mochawesome
+    - name: Armazenando relatório Mochawesome reports
       uses: actions/upload-artifact@v3
       with:
         name: mochawesome-report
