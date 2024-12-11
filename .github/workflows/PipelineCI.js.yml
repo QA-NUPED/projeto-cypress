@@ -35,7 +35,26 @@ jobs:
       run: mkdir -p ./cypress/reports/mochawesome
     - name: Run Cypress tests
       run: npx cypress run
+      ###############################
+      # mescla os relatórios Mochawesome se tiver varios arquivos no formato JSON
+    - name: Merge Mochawesome reports
+      run: |
+        npx mochawesome-merge ./cypress/reports/mochawesome/*.json > ./cypress/reports/mochawesome/merged-report.json
 
+    # Extração e exibição dos resultados na tabela (PASS, FAIL, 
+    - name: Extract and display test results
+      run: |
+        PASS=$(jq '.stats.passes' ./cypress/reports/mochawesome/merged-report.json)
+        FAIL=$(jq '.stats.failures' ./cypress/reports/mochawesome/merged-report.json)
+        TOTAL=$(($PASS + $FAIL))
+        echo "Results Summary"
+        echo "| Status   | Contabilização |"
+        echo "|----------|-------|"
+        echo "| Passed   | $PASS  |"
+        echo "| Failed   | $FAIL  |"
+        echo "| Total    | $TOTAL |"
+      
+    ###################################
        # Arquivando os relatórios gerados
     - name: Armazenando relatório Mochawesome reports
       uses: actions/upload-artifact@v3
