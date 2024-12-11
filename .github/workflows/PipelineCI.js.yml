@@ -39,10 +39,28 @@ jobs:
       # mescla os relatórios Mochawesome se tiver varios arquivos no formato JSON
     - name: Merge dos relatórios Mochawesome em formato JSON
       run: |
-        npx mochawesome-merge ./cypress/reports/mochawesome/*.json > ./cypress/reports/mochawesome/merged-report.json
+        run: |
+          if ls ./cypress/reports/mochawesome/*.json 1> /dev/null 2>&1; then
+          npx mochawesome-merge ./cypress/reports/mochawesome/*.json > ./cypress/reports/mochawesome/merged-report.json
+    else
+      echo "No JSON files to merge!"
+      exit 1
+    fi
 
     - name: Lista de arquivos gerados
       run: ls ./cypress/reports/mochawesome
+
+    - name: List generated files
+      run: ls ./cypress/reports/mochawesome/*.json
+
+    - name: Debug Cypress report generation
+      run: |
+        if [ ! -f ./cypress/reports/mochawesome/*.json ]; then
+          echo "No JSON report generated!"
+          exit 1
+        fi
+        cat ./cypress/reports/mochawesome/*.json
+
 
     # Extração e exibição dos resultados na tabela (PASS, FAIL, 
     - name: Gerando exibição dos resultados dos testes
