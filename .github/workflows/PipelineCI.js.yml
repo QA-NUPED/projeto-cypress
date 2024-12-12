@@ -14,7 +14,7 @@ on:
   
 # No jobs antes do passo a passo se coloca a conf de maquina
 jobs:
-  build:
+  build: #nome do nosso job (=
     runs-on: ubuntu-latest #maquina virtual que sera executado o workflow 
     strategy:
       matrix:
