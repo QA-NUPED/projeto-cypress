@@ -80,3 +80,7 @@ describe('Verifique se é possível realizar cadastro com endereço de e-mail fa
         cy.waitForTime();          
     })
 })
+
+
+
+//oi
